@@ -1,4 +1,3 @@
-cat > README.md << 'EOF'
 # TPU Exporter for GKE
 
 Prometheus exporter for Google Kubernetes Engine (GKE) TPU metrics.
@@ -98,12 +97,3 @@ MIT
 ## Contributing
 
 Pull requests are welcome!
-EOF
-```
-
-### 5. GitHub Secrets 설정
-
-Repository Settings → Secrets and variables → Actions에서 추가:
-```
-DOCKER_USERNAME: yby654
-DOCKER_PASSWORD: <your-docker-hub-token>
