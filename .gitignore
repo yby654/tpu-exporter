@@ -1,0 +1,33 @@
+# Helm
+charts/charts/*.tgz
+charts/Chart.lock
+
+# Sensitive files
+charts/key.json
+key.json
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Kubernetes
+kubeconfig*

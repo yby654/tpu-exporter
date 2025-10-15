@@ -1,0 +1,52 @@
+{{- if and .Values.prometheus.enabled .Values.prometheus.grafana.enabled .Values.prometheus.grafana.dashboards.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tpu-exporter-grafana-dashboards
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: tpu-exporter
+data:
+  tpu-dashboard.json: |-
+    {
+      "annotations": {
+        "list": [
+          {
+            "builtIn": 1,
+            "datasource": "Prometheus",
+            "enable": true,
+            "hide": true,
+            "name": "Annotations & Alerts",
+            "type": "dashboard"
+          }
+        ]
+      },
+      "templating": {
+        "list": [
+          {
+            "name": "node",
+            "label": "Node",
+            "type": "query",
+            "datasource": "Prometheus",
+            "query": "label_values(kube_node_info, node)",
+            "multi": true,
+            "includeAll": true,
+            "refresh": 1
+          }
+        ]
+      },
+      "panels": [
+        {
+          "title": "TPU Node Utilization",
+          "type": "graph",
+          "targets": [
+            {
+              "expr": "gke_tpu_node_usage{node=~\"$node\"}",
+              "legendFormat": "{{ `{{node}}` }}",
+              "interval": ""
+            }
+          ]
+        }
+      ]
+    }
+{{- end }}

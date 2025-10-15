@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "tpu-exporter.fullname" . }}
+  labels:
+    app: {{ include "tpu-exporter.name" . }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      name: http
+  selector:
+    app: {{ include "tpu-exporter.name" . }}
+

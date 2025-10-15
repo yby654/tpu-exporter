@@ -1,0 +1,15 @@
+{{- if .Values.prometheus.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "tpu-exporter.fullname" . }}
+  labels:
+    app: {{ include "tpu-exporter.name" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ include "tpu-exporter.name" . }}
+  endpoints:
+    - port: http
+      interval: 30s
+{{- end }}

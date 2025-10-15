@@ -1,0 +1,36 @@
+image:
+  repository: yby654/tpu-exporter
+  tag: "0.4"
+  pullPolicy: IfNotPresent
+
+auth:
+  mode: "keyFile"  # 또는 "workloadIdentity", "none"
+  keyFile:
+    enabled: true
+    secretName: "tpu-exporter-gcp-key"
+    filePath: "key.json"  # charts/ 디렉토리 기준 상대 경로
+
+serviceAccount:
+  create: true
+  name: ""
+  annotations: {}
+
+service:
+  type: ClusterIP
+  port: 8080
+
+env:
+  GCP_PROJECT_ID: "leafy-environs-445206-d2"
+  GKE_CLUSTER_NAME: "cluster-1"
+  GKE_CLUSTER_LOCATION: "us-central1"
+
+prometheus:
+  enabled: true
+  grafana:
+    enabled: true
+    adminUser: admin
+    adminPassword: prom-1234
+    dashboards:
+      enabled: true
+  alertmanager:
+    enabled: true

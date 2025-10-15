@@ -1,0 +1,12 @@
+{{- if and .Values.prometheus.enabled .Values.prometheus.grafana.enabled .Values.prometheus.grafana.dashboards.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tpu-exporter-grafana-dashboards
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: tpu-exporter
+data:
+  tpu-dashboard.json: |-
+{{ .Files.Get "dashboards/tpu-dashboard.json" | indent 4 }}
+{{- end }}

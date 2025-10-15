@@ -1,0 +1,29 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+
+# Helm
+charts/
+
+# Documentation
+README.md
+*.md
+
+# CI/CD
+.github/
+
+# Kubernetes configs
+*.yaml
+!requirements.txt
+
+# OS
+.DS_Store
