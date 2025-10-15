@@ -25,7 +25,7 @@ cat > my-values.yaml << 'EOV'
 env:
   GCP_PROJECT_ID: "your-project-id"
   GKE_CLUSTER_NAME: "your-cluster"
-  GKE_CLUSTER_LOCATION: "us-central1"
+  GKE_CLUSTER_LOCATION: "your-cluster-zone"
 
 image:
   repository: yby654/tpu-exporter
